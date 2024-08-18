@@ -13,17 +13,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
@@ -34,7 +37,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -64,7 +69,7 @@ fun TransferScreen(paddingValue: Dp) {
                 .background(backgroundColorWhite),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            centerTopBar()
+            centerTopBar() //this can be modified to row
 
             Column(
                 modifier = Modifier
@@ -74,24 +79,77 @@ fun TransferScreen(paddingValue: Dp) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 TextField(
-                    value = amount.toString(),
+
+                    value = "$amount $",
                     onValueChange = {
                         amount = it.toInt()
                     },
                     label = {
-                        Text(text = "Amount", fontSize = 10.sp,)
+                        Text(text = "Amount", fontSize = 16.sp, fontWeight = FontWeight.W500)
                     },
+                    textStyle = TextStyle.Default.copy(fontSize = 45.sp),
                     modifier = Modifier.width(100.dp),
                     keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Phone
-                    )
+                    ),
+                    colors = TextFieldColors(
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor= Color.Black,
+                        disabledTextColor= Color.Black,
+                        errorTextColor= Color.Transparent,
+                        focusedContainerColor= Color.Transparent,
+                        unfocusedContainerColor= Color.Transparent,
+                        disabledContainerColor= Color.Transparent,
+                        errorContainerColor= Color.Transparent,
+                        cursorColor= Color.Transparent,
+                        errorCursorColor= Color.Transparent,
+                        textSelectionColors= TextSelectionColors(
+                            Color.Transparent,Color.Transparent
+                        ),
+                        focusedIndicatorColor= Color.Transparent,
+                        unfocusedIndicatorColor= Color.Transparent,
+                        disabledIndicatorColor= Color.Transparent,
+                        errorIndicatorColor= Color.Transparent,
+                        focusedLeadingIconColor= Color.Transparent,
+                        unfocusedLeadingIconColor= Color.Transparent,
+                        disabledLeadingIconColor= Color.Transparent,
+                        errorLeadingIconColor= Color.Transparent,
+                        focusedTrailingIconColor= Color.Transparent,
+                        unfocusedTrailingIconColor= Color.Transparent,
+                        disabledTrailingIconColor= Color.Transparent,
+                        errorTrailingIconColor= Color.Transparent,
+                        focusedLabelColor= Color.Black,
+                        unfocusedLabelColor= Color.Black,
+                        disabledLabelColor= Color.Black,
+                        errorLabelColor= Color.Transparent,
+                        focusedPlaceholderColor= Color.Transparent,
+                        unfocusedPlaceholderColor= Color.Transparent,
+                        disabledPlaceholderColor= Color.Transparent,
+                        errorPlaceholderColor= Color.Transparent,
+                        focusedSupportingTextColor= Color.Transparent,
+                        unfocusedSupportingTextColor= Color.Transparent,
+                        disabledSupportingTextColor= Color.Transparent,
+                        errorSupportingTextColor= Color.Transparent,
+                        focusedPrefixColor= Color.Transparent,
+                        unfocusedPrefixColor= Color.Transparent,
+                        disabledPrefixColor= Color.Transparent,
+                        errorPrefixColor= Color.Transparent,
+                        unfocusedSuffixColor= Color.Transparent,
+                        focusedSuffixColor= Color.Transparent,
+                        disabledSuffixColor= Color.Transparent,
+                        errorSuffixColor= Color.Transparent,
+                    ),
+
+
                 )
+
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(text = "Balance : 22222289$", fontSize = 14.sp, fontWeight = FontWeight.W400)
                 Spacer(modifier = Modifier.height(10.dp))
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
                     Text(text = "Transfer")
                 }
-                Spacer(modifier = Modifier.height(5.dp))
-                Text(text = "Balance : 22222289$", fontSize = 12.sp)
+
 
             }
         }
@@ -129,4 +187,56 @@ fun centerTopBar() {
 @Composable
 fun TransferScreenPreview() {
     TransferScreen(paddingValue = 0.dp)
+}
+
+
+@Composable
+fun CustomTextField(){
+    TextFieldColors(
+        focusedTextColor = Color.Black,
+        unfocusedTextColor= Color.Black,
+        disabledTextColor= Color.Black,
+        errorTextColor= Color.Transparent,
+        focusedContainerColor= Color.Transparent,
+        unfocusedContainerColor= Color.Transparent,
+        disabledContainerColor= Color.Transparent,
+        errorContainerColor= Color.Transparent,
+        cursorColor= Color.Transparent,
+        errorCursorColor= Color.Transparent,
+        textSelectionColors= TextSelectionColors(
+            Color.Transparent,Color.Transparent
+        ),
+        focusedIndicatorColor= Color.Transparent,
+        unfocusedIndicatorColor= Color.Transparent,
+        disabledIndicatorColor= Color.Transparent,
+        errorIndicatorColor= Color.Transparent,
+        focusedLeadingIconColor= Color.Transparent,
+        unfocusedLeadingIconColor= Color.Transparent,
+        disabledLeadingIconColor= Color.Transparent,
+        errorLeadingIconColor= Color.Transparent,
+        focusedTrailingIconColor= Color.Transparent,
+        unfocusedTrailingIconColor= Color.Transparent,
+        disabledTrailingIconColor= Color.Transparent,
+        errorTrailingIconColor= Color.Transparent,
+        focusedLabelColor= Color.Transparent,
+        unfocusedLabelColor= Color.Transparent,
+        disabledLabelColor= Color.Transparent,
+        errorLabelColor= Color.Transparent,
+        focusedPlaceholderColor= Color.Transparent,
+        unfocusedPlaceholderColor= Color.Transparent,
+        disabledPlaceholderColor= Color.Transparent,
+        errorPlaceholderColor= Color.Transparent,
+        focusedSupportingTextColor= Color.Transparent,
+        unfocusedSupportingTextColor= Color.Transparent,
+        disabledSupportingTextColor= Color.Transparent,
+        errorSupportingTextColor= Color.Transparent,
+        focusedPrefixColor= Color.Transparent,
+        unfocusedPrefixColor= Color.Transparent,
+        disabledPrefixColor= Color.Transparent,
+        errorPrefixColor= Color.Transparent,
+        unfocusedSuffixColor= Color.Transparent,
+        focusedSuffixColor= Color.Transparent,
+        disabledSuffixColor= Color.Transparent,
+        errorSuffixColor= Color.Transparent,
+    )
 }

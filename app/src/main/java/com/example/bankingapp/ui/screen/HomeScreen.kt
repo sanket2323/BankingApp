@@ -43,11 +43,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bankingapp.R
 import com.example.bankingapp.TransferMoneyActivity
+import com.example.bankingapp.model.Statement
 import com.example.bankingapp.ui.components.BalanceInOut
 import com.example.bankingapp.ui.components.ButtonsHomeScreen
+import com.example.bankingapp.ui.components.StatementItem
 import com.example.bankingapp.ui.theme.GreenColor
 import com.example.bankingapp.ui.theme.RedColor
 import com.example.bankingapp.ui.theme.backgroundColorWhite
+import com.example.bankingapp.util.ListStatement
 import java.lang.ProcessBuilder.Redirect
 
 @Composable
@@ -192,7 +195,7 @@ fun HomeScreen(paddingValue: Dp) {
 
                     //Here lazy coloum is there
                     //For Now dummy data is there(Component is  ready)
-
+                    BalanceInOutList(statementList = ListStatement.list)
 
                 }
 
@@ -206,6 +209,15 @@ fun HomeScreen(paddingValue: Dp) {
 
 }
 
+@Composable
+fun BalanceInOutList(statementList:List<Statement>){
+    
+    LazyColumn {
+        items(statementList){
+            StatementItem(statement = it)
+        }
+    }
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
