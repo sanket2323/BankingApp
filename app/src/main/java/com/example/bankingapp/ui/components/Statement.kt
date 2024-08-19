@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.bankingapp.model.Statement
 import com.example.bankingapp.ui.theme.RedColor
 
@@ -25,7 +26,7 @@ fun StatementItem(statement: Statement) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(horizontal = 12.dp, vertical = 6.dp)
             .height(60.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent,
@@ -37,14 +38,17 @@ fun StatementItem(statement: Statement) {
         ) {
             Column {
                 Text(
-                    text = statement.date, modifier = Modifier, textAlign = TextAlign.Center
+                    text = statement.date,
+                    modifier = Modifier,
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp
                 )
                 Spacer(modifier = Modifier.height(3.dp))
                 Text(text = statement.title)
             }
 
             Column {
-                Text(text = statement.amount, color = RedColor)
+                Text(text = "${statement.amount} $", color = RedColor)
                 Spacer(modifier = Modifier.height(3.dp))
                 Text(text = statement.balance)
             }

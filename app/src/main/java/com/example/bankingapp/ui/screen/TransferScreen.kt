@@ -39,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
@@ -55,7 +56,7 @@ import com.example.bankingapp.ui.theme.backgroundColorWhite
 fun TransferScreen(paddingValue: Dp) {
 
     var amount by remember {
-        mutableStateOf(0)
+        mutableStateOf("0")
     }
 
     Box(
@@ -80,73 +81,87 @@ fun TransferScreen(paddingValue: Dp) {
             ) {
                 TextField(
 
-                    value = "$amount $",
+                    value = amount,
+                    trailingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_rupee_24),
+                            contentDescription = "null",
+                            modifier = Modifier.size(40.dp)
+                        )
+                    },
+
                     onValueChange = {
-                        amount = it.toInt()
+                        amount = it
                     },
                     label = {
                         Text(text = "Amount", fontSize = 16.sp, fontWeight = FontWeight.W500)
                     },
                     textStyle = TextStyle.Default.copy(fontSize = 45.sp),
-                    modifier = Modifier.width(100.dp),
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .width(130.dp),
                     keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Phone
                     ),
                     colors = TextFieldColors(
                         focusedTextColor = Color.Black,
-                        unfocusedTextColor= Color.Black,
-                        disabledTextColor= Color.Black,
-                        errorTextColor= Color.Transparent,
-                        focusedContainerColor= Color.Transparent,
-                        unfocusedContainerColor= Color.Transparent,
-                        disabledContainerColor= Color.Transparent,
-                        errorContainerColor= Color.Transparent,
-                        cursorColor= Color.Transparent,
-                        errorCursorColor= Color.Transparent,
-                        textSelectionColors= TextSelectionColors(
-                            Color.Transparent,Color.Transparent
+                        unfocusedTextColor = Color.Black,
+                        disabledTextColor = Color.Black,
+                        errorTextColor = Color.Transparent,
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        errorContainerColor = Color.Transparent,
+                        cursorColor = Color.Transparent,
+                        errorCursorColor = Color.Transparent,
+                        textSelectionColors = TextSelectionColors(
+                            Color.Transparent, Color.Transparent
                         ),
-                        focusedIndicatorColor= Color.Transparent,
-                        unfocusedIndicatorColor= Color.Transparent,
-                        disabledIndicatorColor= Color.Transparent,
-                        errorIndicatorColor= Color.Transparent,
-                        focusedLeadingIconColor= Color.Transparent,
-                        unfocusedLeadingIconColor= Color.Transparent,
-                        disabledLeadingIconColor= Color.Transparent,
-                        errorLeadingIconColor= Color.Transparent,
-                        focusedTrailingIconColor= Color.Transparent,
-                        unfocusedTrailingIconColor= Color.Transparent,
-                        disabledTrailingIconColor= Color.Transparent,
-                        errorTrailingIconColor= Color.Transparent,
-                        focusedLabelColor= Color.Black,
-                        unfocusedLabelColor= Color.Black,
-                        disabledLabelColor= Color.Black,
-                        errorLabelColor= Color.Transparent,
-                        focusedPlaceholderColor= Color.Transparent,
-                        unfocusedPlaceholderColor= Color.Transparent,
-                        disabledPlaceholderColor= Color.Transparent,
-                        errorPlaceholderColor= Color.Transparent,
-                        focusedSupportingTextColor= Color.Transparent,
-                        unfocusedSupportingTextColor= Color.Transparent,
-                        disabledSupportingTextColor= Color.Transparent,
-                        errorSupportingTextColor= Color.Transparent,
-                        focusedPrefixColor= Color.Transparent,
-                        unfocusedPrefixColor= Color.Transparent,
-                        disabledPrefixColor= Color.Transparent,
-                        errorPrefixColor= Color.Transparent,
-                        unfocusedSuffixColor= Color.Transparent,
-                        focusedSuffixColor= Color.Transparent,
-                        disabledSuffixColor= Color.Transparent,
-                        errorSuffixColor= Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        errorIndicatorColor = Color.Transparent,
+                        focusedLeadingIconColor = Color.Black,
+                        unfocusedLeadingIconColor = Color.Black,
+                        disabledLeadingIconColor = Color.Black,
+                        errorLeadingIconColor = Color.Black,
+                        focusedTrailingIconColor = Color.Black,
+                        unfocusedTrailingIconColor = Color.Black,
+                        disabledTrailingIconColor = Color.Black,
+                        errorTrailingIconColor = Color.Black,
+                        focusedLabelColor = Color.Black,
+                        unfocusedLabelColor = Color.Black,
+                        disabledLabelColor = Color.Black,
+                        errorLabelColor = Color.Transparent,
+                        focusedPlaceholderColor = Color.Transparent,
+                        unfocusedPlaceholderColor = Color.Transparent,
+                        disabledPlaceholderColor = Color.Transparent,
+                        errorPlaceholderColor = Color.Transparent,
+                        focusedSupportingTextColor = Color.Transparent,
+                        unfocusedSupportingTextColor = Color.Transparent,
+                        disabledSupportingTextColor = Color.Transparent,
+                        errorSupportingTextColor = Color.Transparent,
+                        focusedPrefixColor = Color.Transparent,
+                        unfocusedPrefixColor = Color.Transparent,
+                        disabledPrefixColor = Color.Transparent,
+                        errorPrefixColor = Color.Transparent,
+                        unfocusedSuffixColor = Color.Transparent,
+                        focusedSuffixColor = Color.Transparent,
+                        disabledSuffixColor = Color.Transparent,
+                        errorSuffixColor = Color.Transparent,
                     ),
 
 
-                )
+                    )
 
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(text = "Balance : 22222289$", fontSize = 14.sp, fontWeight = FontWeight.W400)
                 Spacer(modifier = Modifier.height(10.dp))
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+                Button(
+                    onClick = { /*TODO*/ }, modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                ) {
                     Text(text = "Transfer")
                 }
 
@@ -191,52 +206,52 @@ fun TransferScreenPreview() {
 
 
 @Composable
-fun CustomTextField(){
+fun CustomTextField() {
     TextFieldColors(
         focusedTextColor = Color.Black,
-        unfocusedTextColor= Color.Black,
-        disabledTextColor= Color.Black,
-        errorTextColor= Color.Transparent,
-        focusedContainerColor= Color.Transparent,
-        unfocusedContainerColor= Color.Transparent,
-        disabledContainerColor= Color.Transparent,
-        errorContainerColor= Color.Transparent,
-        cursorColor= Color.Transparent,
-        errorCursorColor= Color.Transparent,
-        textSelectionColors= TextSelectionColors(
-            Color.Transparent,Color.Transparent
+        unfocusedTextColor = Color.Black,
+        disabledTextColor = Color.Black,
+        errorTextColor = Color.Transparent,
+        focusedContainerColor = Color.Transparent,
+        unfocusedContainerColor = Color.Transparent,
+        disabledContainerColor = Color.Transparent,
+        errorContainerColor = Color.Transparent,
+        cursorColor = Color.Transparent,
+        errorCursorColor = Color.Transparent,
+        textSelectionColors = TextSelectionColors(
+            Color.Transparent, Color.Transparent
         ),
-        focusedIndicatorColor= Color.Transparent,
-        unfocusedIndicatorColor= Color.Transparent,
-        disabledIndicatorColor= Color.Transparent,
-        errorIndicatorColor= Color.Transparent,
-        focusedLeadingIconColor= Color.Transparent,
-        unfocusedLeadingIconColor= Color.Transparent,
-        disabledLeadingIconColor= Color.Transparent,
-        errorLeadingIconColor= Color.Transparent,
-        focusedTrailingIconColor= Color.Transparent,
-        unfocusedTrailingIconColor= Color.Transparent,
-        disabledTrailingIconColor= Color.Transparent,
-        errorTrailingIconColor= Color.Transparent,
-        focusedLabelColor= Color.Transparent,
-        unfocusedLabelColor= Color.Transparent,
-        disabledLabelColor= Color.Transparent,
-        errorLabelColor= Color.Transparent,
-        focusedPlaceholderColor= Color.Transparent,
-        unfocusedPlaceholderColor= Color.Transparent,
-        disabledPlaceholderColor= Color.Transparent,
-        errorPlaceholderColor= Color.Transparent,
-        focusedSupportingTextColor= Color.Transparent,
-        unfocusedSupportingTextColor= Color.Transparent,
-        disabledSupportingTextColor= Color.Transparent,
-        errorSupportingTextColor= Color.Transparent,
-        focusedPrefixColor= Color.Transparent,
-        unfocusedPrefixColor= Color.Transparent,
-        disabledPrefixColor= Color.Transparent,
-        errorPrefixColor= Color.Transparent,
-        unfocusedSuffixColor= Color.Transparent,
-        focusedSuffixColor= Color.Transparent,
-        disabledSuffixColor= Color.Transparent,
-        errorSuffixColor= Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        disabledIndicatorColor = Color.Transparent,
+        errorIndicatorColor = Color.Transparent,
+        focusedLeadingIconColor = Color.Transparent,
+        unfocusedLeadingIconColor = Color.Transparent,
+        disabledLeadingIconColor = Color.Transparent,
+        errorLeadingIconColor = Color.Transparent,
+        focusedTrailingIconColor = Color.Transparent,
+        unfocusedTrailingIconColor = Color.Transparent,
+        disabledTrailingIconColor = Color.Transparent,
+        errorTrailingIconColor = Color.Transparent,
+        focusedLabelColor = Color.Transparent,
+        unfocusedLabelColor = Color.Transparent,
+        disabledLabelColor = Color.Transparent,
+        errorLabelColor = Color.Transparent,
+        focusedPlaceholderColor = Color.Transparent,
+        unfocusedPlaceholderColor = Color.Transparent,
+        disabledPlaceholderColor = Color.Transparent,
+        errorPlaceholderColor = Color.Transparent,
+        focusedSupportingTextColor = Color.Transparent,
+        unfocusedSupportingTextColor = Color.Transparent,
+        disabledSupportingTextColor = Color.Transparent,
+        errorSupportingTextColor = Color.Transparent,
+        focusedPrefixColor = Color.Transparent,
+        unfocusedPrefixColor = Color.Transparent,
+        disabledPrefixColor = Color.Transparent,
+        errorPrefixColor = Color.Transparent,
+        unfocusedSuffixColor = Color.Transparent,
+        focusedSuffixColor = Color.Transparent,
+        disabledSuffixColor = Color.Transparent,
+        errorSuffixColor = Color.Transparent,
     )
 }

@@ -16,8 +16,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -57,6 +59,7 @@ import java.lang.ProcessBuilder.Redirect
 fun HomeScreen(paddingValue: Dp) {
 
     val context = LocalContext.current
+    val scrollState = rememberScrollState()
 
 
     Box(
@@ -68,9 +71,9 @@ fun HomeScreen(paddingValue: Dp) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(backgroundColorWhite)
-                .verticalScroll(
-                    rememberScrollState()
-                )
+//                .verticalScroll(
+//                    rememberScrollState()
+//                )
         ) {
             Row(
                 modifier = Modifier
@@ -109,7 +112,7 @@ fun HomeScreen(paddingValue: Dp) {
                     .padding(16.dp)
             ) {
                 Text(
-                    text = "$8.05",
+                    text = "$8*******",
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 40.sp,
@@ -193,9 +196,10 @@ fun HomeScreen(paddingValue: Dp) {
 
                     //Graph will be added here
 
+
                     //Here lazy coloum is there
                     //For Now dummy data is there(Component is  ready)
-                    BalanceInOutList(statementList = ListStatement.list)
+                    BalanceInOutList(ListStatement.list)
 
                 }
 
@@ -213,9 +217,9 @@ fun HomeScreen(paddingValue: Dp) {
 fun BalanceInOutList(statementList:List<Statement>){
     
     LazyColumn {
-        items(statementList){
-            StatementItem(statement = it)
-        }
+       items(statementList) {
+           StatementItem(statement = it)
+       }
     }
 }
 
